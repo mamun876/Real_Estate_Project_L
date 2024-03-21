@@ -51,7 +51,7 @@ class AuthenticatedSessionController extends Controller
             $url=('/dashboard');
         }
 
-        return redirect()->intended($url);
+        return redirect()->intended($url)->with($notification);
     }
 
     /**
