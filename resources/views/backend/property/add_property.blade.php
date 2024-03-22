@@ -17,7 +17,7 @@
                         <div class="card-body">
                             <h6 class="card-title">Add Property </h6>
                            
-             <form method="post" action="" id="myForm" enctype="multipart/form-data">
+                            <form method="post" action="{{ route('store.property') }}" id="myForm" enctype="multipart/form-data">
                 @csrf
 
 
@@ -60,8 +60,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group mb-3">
                                             <label class="form-label">Main Thambnail </label>
-                                            <input type="file" name="property_thambnail" class="form-control"
-                                                onChange="mainThamUrl(this)">
+                                            <input type="file" name="property_thambnail" class="form-control" onChange="mainThamUrl(this)" >
 
                                             <img src="" id="mainThmb">
                                         </div>
@@ -228,8 +227,7 @@
                                 <div class="col-sm-12">
                                     <div class="mb-3">
                                         <label class="form-label">Short Description</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-
+                                        <textarea name="short_descp" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                     </div>
                                 </div><!-- Col -->
 
@@ -239,8 +237,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">Long Description</label>
 
-                                        <textarea class="form-control" name="tinymce" id="tinymceExample" rows="10"></textarea>
-
+                                        <textarea name="long_descp" class="form-control" name="tinymce" id="tinymceExample" rows="10"></textarea>
                                     </div>
                                 </div><!-- Col -->
 
@@ -299,7 +296,7 @@
                   <a class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i> Add More..</a>
             </div>
      </div> <!---end row-->
-     <button type="button" class="btn btn-primary submit">Save Changes </button>
+     <button type="submit" class="btn btn-primary submit">Save Changes </button>
                             </form>
                            
                         </div>
