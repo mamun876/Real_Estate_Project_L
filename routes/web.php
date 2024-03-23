@@ -59,18 +59,18 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::middleware('auth', 'role:agent')->group(function () {
   Route::get('/agent/dashboard', [AgentController::class, 'agentDashboard'])->name('agent.dashboard');
 
- Route::get('/agent/logout', [AgentController::class, 'AgentLogout'])->name('agent.logout');
+  Route::get('/agent/logout', [AgentController::class, 'AgentLogout'])->name('agent.logout');
 
- Route::get('/agent/profile', [AgentController::class, 'AgentProfile'])->name('agent.profile');
+  Route::get('/agent/profile', [AgentController::class, 'AgentProfile'])->name('agent.profile');
 
- Route::post('/agent/profile/store', [AgentController::class, 'AgentProfileStore'])->name('agent.profile.store');
- Route::get('/agent/change/password', [AgentController::class, 'AgentChangePassword'])->name('agent.change.password');
+  Route::post('/agent/profile/store', [AgentController::class, 'AgentProfileStore'])->name('agent.profile.store');
+  Route::get('/agent/change/password', [AgentController::class, 'AgentChangePassword'])->name('agent.change.password');
 
- Route::post('/agent/update/password', [AgentController::class, 'AgentUpdatePassword'])->name('agent.update.password');
+  Route::post('/agent/update/password', [AgentController::class, 'AgentUpdatePassword'])->name('agent.update.password');
 }); //End Groupe Agent Middleware
 
 
-Route::get('/agent/login', [AgentController::class, 'AgentLogin'])->name('agent.login')->middleware(RedirectIfAuthenticated::class); 
+Route::get('/agent/login', [AgentController::class, 'AgentLogin'])->name('agent.login')->middleware(RedirectIfAuthenticated::class);
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware(RedirectIfAuthenticated::class);
 Route::post('/agent/register', [AgentController::class, 'AgentRegister'])->name('agent.register');
 
@@ -106,7 +106,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
   Route::controller(PropertyController::class)->group(function () {
 
     Route::get('/all/property', 'AllProperty')->name('all.property');
-    Route::get('/add/property', 'AddProperty')->name('add.property'); 
+    Route::get('/add/property', 'AddProperty')->name('add.property');
     Route::post('/store/property', 'StoreProperty')->name('store.property');
     Route::get('/edit/property/{id}', 'EditProperty')->name('edit.property');
     Route::post('/update/property', 'UpdateProperty')->name('update.property');
@@ -120,6 +120,19 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/inactive/property', 'InactiveProperty')->name('inactive.property');
 
     Route::post('/active/property', 'ActiveProperty')->name('active.property');
+  });
+
+  // Agent All Route from admin 
+  Route::controller(AdminController::class)->group(function () {
+
+    Route::get('/all/agent', 'AllAgent')->name('all.agent');
+    Route::get('/add/agent', 'AddAgent')->name('add.agent');
+    Route::post('/store/agent', 'StoreAgent')->name('store.agent');
+    Route::post('/store/agent', 'StoreAgent')->name('store.agent');
+    Route::get('/edit/agent/{id}', 'EditAgent')->name('edit.agent');
+    Route::post('/update/agent', 'UpdateAgent')->name('update.agent');
+    Route::get('/delete/agent/{id}', 'DeleteAgent')->name('delete.agent'); 
+    Route::get('/changeStatus', 'changeStatus');
   });
 }); // End Group Admin Middleware
 
