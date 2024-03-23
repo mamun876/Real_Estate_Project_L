@@ -16,9 +16,9 @@
                     <div class="card">
                         <div class="card-body">
                             <h6 class="card-title">Add Property </h6>
-                           
+                            
                             <form method="post" action="{{ route('store.property') }}" id="myForm" enctype="multipart/form-data">
-                @csrf
+                                @csrf
 
 
                                 <div class="row">
@@ -132,6 +132,12 @@
                                     <div class="col-sm-3">
                                         <div class="mb-3">
                                             <label class="form-label">State</label>
+                                            {{-- <select name="state" class="form-select" id="exampleFormControlSelect1">
+                                                <option selected="" disabled="">Select State</option>
+                                               @foreach($pstate as $state)
+                                                <option value="{{ $state->id }}">{{ $state->state_name }}</option>
+                                               @endforeach
+                                            </select> --}}
                                             <input type="text" name="state" class="form-control">
                                         </div>
                                     </div><!-- Col -->
@@ -165,7 +171,13 @@
                                             <input type="text" name="neighborhood" class="form-control">
                                         </div>
                                     </div><!-- Col -->
+
+
                                 </div><!-- Row -->
+
+
+
+
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="mb-3">
@@ -184,6 +196,9 @@
                                         </div>
                                     </div><!-- Col -->
                                 </div><!-- Row -->
+
+
+
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <div class="mb-3">
@@ -228,6 +243,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">Short Description</label>
                                         <textarea name="short_descp" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+
                                     </div>
                                 </div><!-- Col -->
 
@@ -238,6 +254,7 @@
                                         <label class="form-label">Long Description</label>
 
                                         <textarea name="long_descp" class="form-control" name="tinymce" id="tinymceExample" rows="10"></textarea>
+
                                     </div>
                                 </div><!-- Col -->
 
@@ -264,41 +281,40 @@
 
 
                                 </div>
-                                <!--   //////////// Facilities Option /////////////// -->
+                                {{-- //////////// Facilities Option /////////////// --> --}}
 
-         <div class="row add_item">
-            <div class="col-md-4">
-                  <div class="mb-3">
-                        <label for="facility_name" class="form-label">Facilities </label>
-                        <select name="facility_name[]" id="facility_name" class="form-control">
-                              <option value="">Select Facility</option>
-                              <option value="Hospital">Hospital</option>
-                              <option value="SuperMarket">Super Market</option>
-                              <option value="School">School</option>
-                              <option value="Entertainment">Entertainment</option>
-                              <option value="Pharmacy">Pharmacy</option>
-                              <option value="Airport">Airport</option>
-                              <option value="Railways">Railways</option>
-                              <option value="Bus Stop">Bus Stop</option>
-                              <option value="Beach">Beach</option>
-                              <option value="Mall">Mall</option>
-                              <option value="Bank">Bank</option>
-                        </select>
-                  </div>
-            </div>
-            <div class="col-md-4">
-                  <div class="mb-3">
-                        <label for="distance" class="form-label"> Distance </label>
-                        <input type="text" name="distance[]" id="distance" class="form-control" placeholder="Distance (Km)">
-                  </div>
-            </div>
-            <div class="form-group col-md-4" style="padding-top: 30px;">
-                  <a class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i> Add More..</a>
-            </div>
-     </div> <!---end row-->
-     <button type="submit" class="btn btn-primary submit">Save Changes </button>
+                                <div class="row add_item">
+                                <div class="col-md-4">
+                                      <div class="mb-3">
+                                            <label for="facility_name" class="form-label">Facilities </label>
+                                            <select name="facility_name[]" id="facility_name" class="form-control">
+                                                  <option value="">Select Facility</option>
+                                                  <option value="Hospital">Hospital</option>
+                                                  <option value="SuperMarket">Super Market</option>
+                                                  <option value="School">School</option>
+                                                  <option value="Entertainment">Entertainment</option>
+                                                  <option value="Pharmacy">Pharmacy</option>
+                                                  <option value="Airport">Airport</option>
+                                                  <option value="Railways">Railways</option>
+                                                  <option value="Bus Stop">Bus Stop</option>
+                                                  <option value="Beach">Beach</option>
+                                                  <option value="Mall">Mall</option>
+                                                  <option value="Bank">Bank</option>
+                                            </select>
+                                      </div>
+                                </div>
+                                <div class="col-md-4">
+                                      <div class="mb-3">
+                                            <label for="distance" class="form-label"> Distance </label>
+                                            <input type="text" name="distance[]" id="distance" class="form-control" placeholder="Distance (Km)">
+                                      </div>
+                                </div>
+                                <div class="form-group col-md-4" style="padding-top: 30px;">
+                                      <a class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i> Add More..</a>
+                                </div>
+                         </div> <!---end row-->
+                         <button type="submit" class="btn btn-primary">Save Changes </button>
                             </form>
-                           
                         </div>
                     </div>
 
@@ -373,13 +389,13 @@
 
 
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('#myForm').validate({
-                rules: {
-                    property_name: {
-                        required: true,
-                    },
-                    property_status: {
+        $(document).ready(function (){
+         $('#myForm').validate({
+             rules: {
+                 property_name: {
+                     required : true,
+                 },
+                  property_status: {
                      required : true,
                  },
                   lowest_price: {
@@ -391,10 +407,11 @@
                   ptype_id: {
                      required : true,
                  },
-
-                },
-                messages: {
-                    property_name: {
+                  
+                 
+             },
+             messages :{
+                 property_name: {
                      required : 'Please Enter Property Name',
                  },
                   property_status: {
@@ -408,7 +425,7 @@
                  },
                  ptype_id: {
                      required : 'Please Select Property Type',
-                    },
+                 }, 
 
                 },
                 errorElement: 'span',
@@ -436,8 +453,6 @@
             }
         }
     </script>
-
-
     <script>
         $(document).ready(function() {
             $('#multiImg').on('change', function() { //on file input change
@@ -448,7 +463,7 @@
 
                     $.each(data, function(index, file) { //loop though each file
                         if (/(\.|\/)(gif|jpe?g|png|webp)$/i.test(file
-                            .type)) { //check supported file type
+                                .type)) { //check supported file type
                             var fRead = new FileReader(); //new filereader
                             fRead.onload = (function(file) { //trigger function on successful read
                                 return function(e) {
@@ -456,7 +471,7 @@
                                             e.target.result).width(100)
                                         .height(80); //create image element 
                                     $('#preview_img').append(
-                                    img); //append image to output element
+                                        img); //append image to output element
                                 };
                             })(file);
                             fRead.readAsDataURL(file); //URL representing the file's data.
