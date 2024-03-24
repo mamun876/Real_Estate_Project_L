@@ -6,8 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Amenities;
 use App\Models\Facility;
 use App\Models\MultiImage;
+use App\Models\PackagePlan;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Property;
+use App\Models\PropertyMessage;
 use App\Models\PropertyType;
+use App\Models\State;
 use App\Models\User;
 use Carbon\Carbon;
 use Intervention\Image\Facades\Image;
@@ -26,8 +30,9 @@ class PropertyController extends Controller
 
         $propertytype = PropertyType::latest()->get();
         $amenities = Amenities::latest()->get();
+        $pstate = State::latest()->get();
         $activeAgent = User::where('status','active')->where('role','agent')->latest()->get();
-        return view('backend.property.add_property',compact('propertytype','amenities','activeAgent'));
+        return view('backend.property.add_property',compact('propertytype','amenities','activeAgent','pstate'));
     }// End Method 
 
     public function StoreProperty(Request $request){
@@ -133,11 +138,12 @@ public function EditProperty($id){
     $type = $property->amenities_id;
     $property_ami = explode(',', $type);
     $multiImage = MultiImage::where('property_id',$id)->get();
+    $pstate = State::latest()->get();
     $propertytype = PropertyType::latest()->get();
     $amenities = Amenities::latest()->get();
     $activeAgent = User::where('status','active')->where('role','agent')->latest()->get();
 
-    return view('backend.property.edit_property',compact('property','propertytype','amenities','activeAgent','property_ami','multiImage','facilities'));
+    return view('backend.property.edit_property',compact('property','propertytype','amenities','activeAgent','property_ami','multiImage','facilities','pstate'));
 
 }// End Method 
 
@@ -406,4 +412,28 @@ public function InactiveProperty(Request $request){
 
 
 }// End Method 
+public function AdminPackageHistory(){
+
+    $packagehistory = PackagePlan::latest()->get();
+    return view('backend.package.package_history',compact('packagehistory'));
+
+
+   }// End Method 
+   public function PackageInvoice($id){
+
+    $packagehistory = PackagePlan::where('id',$id)->first();
+
+    $pdf = Pdf::loadView('backend.package.package_history_invoice', compact('packagehistory'))->setPaper('a4')->setOption([
+        'tempDir' => public_path(),
+        'chroot' => public_path(),
+    ]);
+    return $pdf->download('invoice.pdf');
+
+}// End Method 
+public function AdminPropertyMessage(){
+
+    $usermsg = PropertyMessage::latest()->get();
+    return view('backend.message.all_message',compact('usermsg'));
+
+}// End Method  
 }

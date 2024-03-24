@@ -1,13 +1,14 @@
+
 @php
-$id = Auth::user()->id;
-$agentId = App\Models\User::find($id);
-$status = $agentId->status;
-@endphp
+ $id = Auth::user()->id;
+ $agentId = App\Models\User::find($id);
+ $status = $agentId->status;
+ @endphp
 
 <nav class="sidebar">
     <div class="sidebar-header">
       <a href="#" class="sidebar-brand">
-        RealEstate<span>Admin</span>
+        Real_Estate<span>Agent</span>
       </a>
       <div class="sidebar-toggler not-active">
         <span></span>
@@ -47,9 +48,27 @@ $status = $agentId->status;
         </li>
 
         <li class="nav-item">
-          <a href="pages/apps/calendar.html" class="nav-link">
+          <a href="{{ route('buy.package') }}" class="nav-link">
             <i class="link-icon" data-feather="calendar"></i>
-            <span class="link-title">Calendar</span>
+            <span class="link-title">Buy Package </span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('package.history') }}" class="nav-link">
+            <i class="link-icon" data-feather="calendar"></i>
+            <span class="link-title">Package History </span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('agent.property.message') }}" class="nav-link">
+            <i class="link-icon" data-feather="calendar"></i>
+            <span class="link-title">Property Message </span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('agent.property.message') }}" class="nav-link">
+            <i class="link-icon" data-feather="calendar"></i>
+            <span class="link-title">Property Message </span>
           </a>
         </li>
 
@@ -92,11 +111,10 @@ $status = $agentId->status;
         </li>
 
 
+
         @else
 
         @endif
-
-
 
         <li class="nav-item nav-category">Docs</li>
         <li class="nav-item">
